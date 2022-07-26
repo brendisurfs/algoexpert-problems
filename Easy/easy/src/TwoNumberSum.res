@@ -1,39 +1,32 @@
-let print = text => {
-  Js.log(text)
-}
+let twoNumberSum = (inArray, targetNum) => {
+  let break = ref(false)
+  Array.sort((a, b) => a - b, inArray)
+  let left = ref(0)
+  let right = ref(Array.length(inArray) - 1)
 
-type numMap = {
-  mutable number: int,
-  mutable isTrue: bool,
-}
+  while left.contents < right.contents && break.contents != true {
+    let arrLeft = inArray[left.contents]
+    let arrRight = inArray[right.contents]
 
-let twoNumberSum = (intArray: array<int>, targetNum): array<int> => {
-  let nums: numMap = {
-    number: 0,
-    isTrue: false,
-  }
-  let sorted = Js.Array2.sortInPlace(intArray)
-  let arrayLength = Array.length(sorted)
+    let currentSum = arrLeft + arrRight
 
-  for i in 0 to arrayLength {
-    let currentNum = sorted[i]
-    let potentialMatch = targetNum - currentNum
-    // match against inclusion
-    if Js.Array.includes(potentialMatch, sorted) {
-      [potentialMatch, currentNum]
-    } else {
+    if currentSum == targetNum {
+      Js.log([arrLeft, arrRight])
+      break := true
+    }
 
+    if currentSum < targetNum {
+      left := left.contents + 1
+    }
+
+    if currentSum > targetNum {
+      right := right.contents + 1
     }
   }
-  [0, 0]
+  []
 }
 
+let testArr = [3, 5, -4, 8, 11, 1, -1, 6]
 let testTarget = 10
-let testArray = [3, 5, -4, 8, 11, 1, -1, 6]
 
-let doesTestPass = twoNumberSum(testArray, testTarget) == [-1, 11]
-
-switch doesTestPass {
-| true => print("test passed")
-| false => print("test failed")
-}
+let _ = twoNumberSum(testArr, testTarget)
