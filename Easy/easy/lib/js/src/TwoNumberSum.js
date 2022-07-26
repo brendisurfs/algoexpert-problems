@@ -2,6 +2,7 @@
 'use strict';
 
 var Caml_obj = require("rescript/lib/js/caml_obj.js");
+var Caml_array = require("rescript/lib/js/caml_array.js");
 
 function print(text) {
   console.log(text);
@@ -9,6 +10,14 @@ function print(text) {
 }
 
 function twoNumberSum(intArray, targetNum) {
+  var sorted = intArray.sort();
+  var arrayLength = sorted.length;
+  for(var i = 0; i <= arrayLength; ++i){
+    var currentNum = Caml_array.get(sorted, i);
+    var potentialMatch = targetNum - currentNum | 0;
+    console.log(potentialMatch);
+  }
+  console.log(sorted);
   return [
           -1,
           11
@@ -26,10 +35,7 @@ var testArray = [
   6
 ];
 
-var doesTestPass = Caml_obj.caml_equal([
-      -1,
-      11
-    ], [
+var doesTestPass = Caml_obj.caml_equal(twoNumberSum(testArray, 10), [
       -1,
       11
     ]);
