@@ -1,0 +1,10 @@
+rescript = 1
+rule cp
+  command = cp $i $out
+rule touch
+ command = touch $out
+o TwoNumberSum.cmi : cp ../bs/src/TwoNumberSum.cmi
+o TwoNumberSum.cmj : cp ../bs/src/TwoNumberSum.cmj
+o TwoNumberSum.cmt : cp ../bs/src/TwoNumberSum.cmt
+o TwoNumberSum.res : cp ../../src/TwoNumberSum.res
+build install.stamp : touch TwoNumberSum.cmi TwoNumberSum.cmj 
