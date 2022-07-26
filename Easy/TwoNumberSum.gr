@@ -1,12 +1,33 @@
 import Array from "array"
 
-let twoNumberSum = (intArray: Array<Number>, targetSum) => {
+let twoNumberSum = (arr: Array<Number>, targetNum) => {
   let mut left = 0
-  let mut right = Array.length(intArray) - 1
+  let mut right = Array.length(arr) - 1
 
-  let sorted = Array.sort((a, b) => a - b, intArray)
-  [-1, 11]
+  // sorts in place
+  Array.sort((a, b) => a - b, arr)
+
+  while (left < right) {
+    let currentSum = arr[left] + arr[right]
+
+    if (currentSum == targetNum) {
+      print([arr[left], arr[right]])
+
+      break
+    }
+
+    if (currentSum < targetNum) {
+      left += 1
+      continue
+    }
+    if (currentSum > targetNum) {
+      right += 1
+      continue
+    }
+  }
 }
 
-let testArray = [3, 5, -4, 8, 11, 1, -1, 6]
+let testArray = Array.fromList([3, 5, -4, 8, 11, 1, -1, 6])
 let testTarget = 10
+
+let _ = twoNumberSum(testArray, testTarget)
