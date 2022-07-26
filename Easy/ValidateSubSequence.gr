@@ -1,0 +1,30 @@
+// given two non empty arrays of integeres, write a function that  determines
+// whether the second array is a subsequence of the first one.
+import Array from "array"
+import List from "list"
+import Set from "set"
+
+// NOTE: this impl has an O(n^2) time, which is no bueno.
+let isValidSub = (array: Array<Number>, sequence: Array<number>) => {
+  let totalSet = Set.make()
+  let mut accum = []
+
+  // loop through each element in the base array, match to the sequence.
+  Array.map(arrElement => {
+    Array.forEach(seqElement => {
+
+      if (seqElement == arrElement) {
+        accum = List.append(accum, [seqElement])
+      }
+    }, sequence)
+  }, array)
+
+  let uniqueList = List.unique(accum)
+  uniqueList == Array.toList(sequence)
+}
+
+let testArray = Array.fromList([5, 1, 22, 25, 6, -1, 8, 10])
+let testSequence = Array.fromList([1, 6, -1, 10])
+
+let response = isValidSub(testArray, testSequence)
+print(response)
