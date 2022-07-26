@@ -1,0 +1,21 @@
+import Array from "array"
+
+
+let twoNumberSum = (intArray: Array<Number>, targetSum) => {
+  let sorted = Array.sort((a,b) => a - b, intArray)
+
+  let filtered = Array.filter(a => a < 5, intArray)
+  print(toString(filtered))
+  [-1, 11]
+}
+
+let testArray = [3, 5, -4, 8, 11, 1, -1, 6]
+let testTarget = 10
+
+let testValue = twoNumberSum(Array.fromList(testArray), testTarget)
+
+// should fail
+let shouldFail = testValue == [-2, 11]
+
+let shouldPass = testValue == [-1, 11]
+
