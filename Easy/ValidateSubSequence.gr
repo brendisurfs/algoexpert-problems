@@ -28,3 +28,24 @@ let testSequence = Array.fromList([1, 6, -1, 10])
 
 let response = isValidSub(testArray, testSequence)
 print(response)
+
+// this one is MUCH better, and much easier to process.
+let newIsValidSub = (array, seq) => {
+  let mut arrIdx = 0
+  let mut seqIdx = 0
+  let arrLen = Array.length(array)
+  let seqLen = Array.length(seq)
+
+  while (arrIdx < arrLen && seqIdx < seqLen) {
+    match (array[arrIdx] == seq[seqIdx]) {
+      true => seqIdx += 1,
+      false => arrIdx += 1,
+    }
+  }
+  // return true if the sequence ptr we made is equal to the sequence len
+  // after iterating through.
+  seqIdx == seqLen
+}
+
+let isValid = newIsValidSub(testArray, testSequence)
+print(isValid)
