@@ -1,5 +1,3 @@
-open Js.Array
-
 let validateSub = (arr, seq) => {
   let arrPtr = ref(0)
   let seqPtr = ref(0)
