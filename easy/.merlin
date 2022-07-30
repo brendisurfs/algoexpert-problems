@@ -1,8 +1,0 @@
-####{BSB GENERATED: NO EDIT
-FLG -ppx '/Users/brendi/Dev/Learning/AlgoExpert_Questions/Easy/easy/node_modules/rescript/darwin/bsc.exe -as-ppx '
-S /Users/brendi/Dev/Learning/AlgoExpert_Questions/Easy/easy/node_modules/rescript/lib/ocaml
-B /Users/brendi/Dev/Learning/AlgoExpert_Questions/Easy/easy/node_modules/rescript/lib/ocaml
-FLG -w +a-4-9-20-40-41-42-50-61-102
-S src
-B lib/bs/src
-####BSB GENERATED: NO EDIT}
