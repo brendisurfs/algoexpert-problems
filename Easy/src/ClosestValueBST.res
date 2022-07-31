@@ -37,3 +37,5 @@ let testTree = {
 }
 
 let testTarget = 10
+
+findClosestValue(testTree, testTarget, testTree.value)->Js.log
