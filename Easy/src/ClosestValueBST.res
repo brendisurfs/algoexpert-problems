@@ -5,17 +5,24 @@ type rec bst = {
 }
 
 open Belt
-let rec findClosestValue = (tree, target, closest) => {
-  let closeKeeper = ref(closest)
+let rec findClosestValue = (tree, target, closest: int): int => {
   let current = ref(tree.value)
+  let closeKeeper = ref(closest)
 
   if Js.Math.abs_int(target - closest) > Js.Math.abs_int(target - tree.value) {
     closeKeeper := tree.value
   }
-  if target < tree.value && Option.isSome(tree.left) {
-    let res = findClosestValue(Option.getExn(tree.left), target, closeKeeper.contents)
-    res
+
+  let res = switch true {
+  | true if target < tree.value && Option.isSome(tree.left) =>
+    findClosestValue(Option.getExn(tree.left), target, closest)
+  | true if target > tree.value && Option.isSome(tree.right) =>
+    findClosestValue(Option.getExn(tree.left), target, closest)
+  | true if tree.value == target =>
+    closest
+    _ => -1
   }
+  res
 }
 
 let findValue = (tree, target) => {
@@ -38,4 +45,4 @@ let testTree = {
 
 let testTarget = 10
 
-findClosestValue(testTree, testTarget, testTree.value)->Js.log
+findValue(testTree, testTarget)->Js.log
